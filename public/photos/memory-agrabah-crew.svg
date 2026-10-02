@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <rect width="600" height="400" fill="#080B14"/>
+  
+      <defs>
+        <linearGradient id="spot1" x1="0%" y1="0%" x2="40%" y2="100%">
+          <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="spot2" x1="100%" y1="0%" x2="60%" y2="100%">
+          <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#FDE68A" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Beams -->
+      <polygon points="50,0 200,0 350,400 0,400" fill="url(#spot1)" />
+      <polygon points="400,0 550,0 600,400 250,400" fill="url(#spot2)" />
+      <!-- Starry dust -->
+      <circle cx="120" cy="140" r="2.5" fill="#FFF" opacity="0.8" />
+      <circle cx="280" cy="90" r="2" fill="#FDE68A" opacity="0.9" />
+      <circle cx="450" cy="180" r="3" fill="#FFF" opacity="0.7" />
+      <circle cx="320" cy="220" r="1.5" fill="#FDE68A" opacity="0.8" />
+      <circle cx="180" cy="260" r="2" fill="#FFF" opacity="0.6" />
+      <!-- Stage floor -->
+      <ellipse cx="300" cy="380" rx="350" ry="80" fill="#05070E" opacity="0.95" />
+      <!-- Silhouettes of ensemble members -->
+      <path d="M120,380 C120,330 140,320 150,300 C155,290 150,270 160,265 C170,265 175,285 180,300 C190,320 210,330 210,380 Z" fill="#080B14"/>
+      <circle cx="165" cy="255" r="14" fill="#080B14" />
+
+      <path d="M250,380 C250,320 275,305 285,285 C290,275 285,255 295,250 C305,250 310,270 315,285 C325,305 350,320 350,380 Z" fill="#080B14"/>
+      <circle cx="300" cy="240" r="16" fill="#080B14" />
+
+      <path d="M390,380 C390,330 410,320 420,300 C425,290 420,270 430,265 C440,265 445,285 450,300 C460,320 480,330 480,380 Z" fill="#080B14"/>
+      <circle cx="435" cy="255" r="14" fill="#080B14" />
+      <circle cx="300" cy="240" r="18" fill="none" stroke="#F59E0B" stroke-width="1.5" opacity="0.5" />
+    
+</svg>

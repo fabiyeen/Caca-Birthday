@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <rect width="600" height="400" fill="#080B14"/>
+  
+      <defs>
+        <radialGradient id="stageGlow" cx="50%" cy="60%" r="50%">
+          <stop offset="0%" stop-color="#EC4899" stop-opacity="0.7"/>
+          <stop offset="60%" stop-color="#1E1B4B" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#05070E" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="600" height="400" fill="url(#stageGlow)" />
+      <!-- Drapes on sides -->
+      <path d="M0,0 Q60,200 0,400 L80,400 Q130,200 80,0 Z" fill="#150B24" opacity="0.9"/>
+      <path d="M600,0 Q540,200 600,400 L520,400 Q470,200 520,0 Z" fill="#150B24" opacity="0.9"/>
+      <!-- Hanging celestial chandelier / star cluster -->
+      <circle cx="300" cy="120" r="6" fill="#FFF" />
+      <line x1="300" y1="0" x2="300" y2="120" stroke="#EC4899" stroke-width="1.5" stroke-dasharray="2 3"/>
+      <circle cx="270" cy="140" r="4" fill="#EC4899" />
+      <line x1="270" y1="0" x2="270" y2="140" stroke="#EC4899" stroke-width="1" stroke-dasharray="2 3"/>
+      <circle cx="330" cy="140" r="4" fill="#EC4899" />
+      <line x1="330" y1="0" x2="330" y2="140" stroke="#EC4899" stroke-width="1" stroke-dasharray="2 3"/>
+      <!-- Star sparks -->
+      <polygon points="300,105 304,116 315,120 304,124 300,135 296,124 285,120 296,116" fill="#FFF" />
+      <polygon points="180,220 183,228 191,231 183,234 180,242 177,234 169,231 177,228" fill="#EC4899" opacity="0.9"/>
+      <polygon points="420,210 423,218 431,221 423,224 420,232 417,224 409,221 417,218" fill="#F472B6" opacity="0.9"/>
+    
+</svg>

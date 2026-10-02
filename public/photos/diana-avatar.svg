@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="grad_diana" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FB7185" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#0F172A" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#030712" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glow_diana" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#grad_diana)"/>
+  <circle cx="100" cy="100" r="76" fill="none" stroke="#FB7185" stroke-width="1.8" stroke-dasharray="6 4" opacity="0.45"/>
+  <circle cx="100" cy="100" r="62" fill="none" stroke="#FB7185" stroke-width="1" opacity="0.25"/>
+  <circle cx="100" cy="100" r="46" fill="#FB7185" fill-opacity="0.1" filter="url(#glow_diana)"/>
+  <text x="100" y="112" font-family="'Cinzel', 'Outfit', serif" font-size="34" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">
+    D
+  </text>
+  <circle cx="44" cy="50" r="2.5" fill="#FB7185" opacity="0.8"/>
+  <circle cx="156" cy="148" r="2" fill="#FB7185" opacity="0.7"/>
+  <circle cx="150" cy="46" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="50" cy="154" r="1.8" fill="#FFFFFF" opacity="0.6"/>
+</svg>

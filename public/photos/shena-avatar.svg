@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="grad_shena" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#0F172A" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#080B14" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#grad_shena)"/>
+  <circle cx="100" cy="100" r="54" stroke="#10B981" stroke-width="2" fill="none" opacity="0.6"/>
+  <circle cx="100" cy="100" r="46" stroke="#FFF" stroke-width="0.8" stroke-dasharray="3 3" fill="none" opacity="0.4"/>
+  <text x="100" y="112" font-family="'Cinzel', 'Playfair Display', serif" font-size="34" font-weight="700" fill="#FFF" text-anchor="middle" letter-spacing="2">S</text>
+  <circle cx="36" cy="46" r="2" fill="#FFF" opacity="0.6"/>
+  <circle cx="164" cy="154" r="2.5" fill="#10B981" opacity="0.8"/>
+  <circle cx="150" cy="40" r="1.5" fill="#FFF" opacity="0.5"/>
+</svg>
