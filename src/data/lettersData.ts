@@ -327,6 +327,18 @@ export const FRIEND_LETTERS: FriendLetter[] = [
     "letterMarkdown": "### Dearest Kak Caca,\n\nHi Kacacaaaa!!\n\nHappiest birthday to you! May you be surrounded by all the good things in this world, because you deserve them all <3\n\nLong time no see & I MISS U! It’s so good to see from your TikTok that you’ve been traveling around the world with your mom or by yourself 🥹\n\nWish we could meet soon yaaaa! 🤍\n\nXx, Nop :-)",
     "pdfUrl": "/letters/Novita.pdf",
     "colorAccent": "#10B981"
+  },
+  {
+    "id": "sammy",
+    "name": "Sammy",
+    "constellationCoords": {
+      "x": 60,
+      "y": 32
+    },
+    "snippetQuote": "Hope you’re always happyy, eat good food, travel to more countries, dan semoga gacor terus hidupnya. Semangat terus chaaaa, lovlov!",
+    "letterMarkdown": "### Dearest Kak Caca,\n\nCHACHAABRINAA HAPPY BIRTHDAAYYYY!!!!\n\nPanjang umur sehat selalu, smoga gacor terus hidupnya. Main atuh sekali sekali kapan ke gs lagiiii? We should karaoke together lagii! Tinggal di gs ajasi?!\n\nAnyways hope you’re always happyy, eat good food, travel to more countries, dan semoga kita tibatiba dikasi undangan wedding 👀👀 hehe soalnya aku gatau km dah ada cowo ga, life update gas!\n\nSemangat terus chaaaa! Lovlov! Salam sama tante Yaniie!",
+    "pdfUrl": "/letters/Sammy.pdf",
+    "colorAccent": "#F59E0B"
   }
 ];
 
@@ -549,5 +561,13 @@ export const CONSTELLATION_LINKS: [string, string][] = [
   [
     "marlino",
     "shena"
+  ],
+  [
+    "sammy",
+    "fabian"
+  ],
+  [
+    "sammy",
+    "husen"
   ]
 ];
