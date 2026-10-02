@@ -1,84 +1,131 @@
-// Ambient Celestial Soundscape Generator using Web Audio API
-// 100% offline, zero network dependencies, buttery smooth ambient harmonies
+// Background Music Engine - Yiruma: Reminiscent
+// High-fidelity streaming audio with loop, volume control, instant mute, and subscription state
 
-class CelestialSoundscape {
-  private ctx: AudioContext | null = null;
+export interface AudioState {
+  isPlaying: boolean;
+  isMuted: boolean;
+  volume: number;
+}
+
+class CelestialAudioEngine {
+  private audio: HTMLAudioElement | null = null;
+  private audioSrc = encodeURI('/Yiruma Reminiscent.mp3');
   private isPlaying = false;
   private isMuted = false;
-  private masterGain: GainNode | null = null;
-  private droneGain: GainNode | null = null;
-  private timer: number | null = null;
-  private droneOsc1: OscillatorNode | null = null;
-  private droneOsc2: OscillatorNode | null = null;
-  private volume = 0.4;
+  private volume = 0.45;
+  private listeners: Set<(state: AudioState) => void> = new Set();
 
-  // Celestial pentatonic frequencies: F#3, A#3, C#4, D#4, F#4, G#4, A#4, C#5
-  private pentatonicNotes = [185.0, 233.08, 277.18, 311.13, 369.99, 415.3, 466.16, 554.37, 739.99];
-
-  public init() {
-    if (this.ctx) return;
-    const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    this.ctx = new AudioCtx();
-
-    // Master Gain
-    this.masterGain = this.ctx.createGain();
-    this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
-    this.masterGain.connect(this.ctx.destination);
-  }
-
-  public async play() {
-    this.init();
-    if (!this.ctx) return;
-
-    if (this.ctx.state === 'suspended') {
-      await this.ctx.resume();
+  constructor() {
+    if (typeof window !== 'undefined') {
+      this.initAudio();
     }
-
-    if (this.isPlaying) return;
-    this.isPlaying = true;
-
-    // Start soft cosmic pad drone
-    this.startDrone();
-
-    // Start periodic ethereal chimes
-    this.scheduleNextChime();
   }
 
-  public pause() {
+  private initAudio() {
+    if (this.audio) return;
+    try {
+      this.audio = new Audio();
+      this.audio.src = this.audioSrc;
+      this.audio.loop = true;
+      this.audio.preload = 'metadata';
+      this.audio.volume = this.volume;
+      this.audio.muted = this.isMuted;
+
+      this.audio.addEventListener('play', () => {
+        this.isPlaying = true;
+        this.notify();
+      });
+
+      this.audio.addEventListener('pause', () => {
+        this.isPlaying = false;
+        this.notify();
+      });
+
+      this.audio.addEventListener('volumechange', () => {
+        if (this.audio) {
+          this.volume = this.audio.volume;
+          this.isMuted = this.audio.muted;
+          this.notify();
+        }
+      });
+
+      this.audio.addEventListener('ended', () => {
+        this.isPlaying = false;
+        this.notify();
+      });
+
+      this.audio.addEventListener('error', (e) => {
+        console.warn('Audio playback error:', e);
+        this.isPlaying = false;
+        this.notify();
+      });
+    } catch (err) {
+      console.warn('Failed to initialize Audio element:', err);
+    }
+  }
+
+  public async play(): Promise<boolean> {
+    this.initAudio();
+    if (!this.audio) return false;
+
+    try {
+      this.audio.muted = this.isMuted;
+      this.audio.volume = this.volume;
+      await this.audio.play();
+      this.isPlaying = true;
+      this.notify();
+      return true;
+    } catch (err) {
+      // Browser autoplay policy prevented or interrupted playback
+      console.warn('Audio play was prevented or aborted:', err);
+      this.isPlaying = false;
+      this.notify();
+      return false;
+    }
+  }
+
+  public pause(): void {
+    if (!this.audio) return;
+    try {
+      this.audio.pause();
+    } catch (err) {
+      console.warn('Error pausing audio:', err);
+    }
     this.isPlaying = false;
-    if (this.timer) {
-      window.clearTimeout(this.timer);
-      this.timer = null;
-    }
-    this.stopDrone();
+    this.notify();
   }
 
-  public toggle(): boolean {
+  public async toggle(): Promise<boolean> {
     if (this.isPlaying) {
       this.pause();
       return false;
     } else {
-      this.play();
-      return true;
+      return await this.play();
     }
   }
 
-  public setVolume(val: number) {
+  public setVolume(val: number): void {
     this.volume = Math.max(0, Math.min(1, val));
-    if (this.masterGain && this.ctx) {
-      this.masterGain.gain.setTargetAtTime(this.isMuted ? 0 : this.volume, this.ctx.currentTime, 0.05);
+    if (this.audio) {
+      this.audio.volume = this.volume;
+      if (this.volume > 0 && this.isMuted) {
+        this.isMuted = false;
+        this.audio.muted = false;
+      }
     }
+    this.notify();
   }
 
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
-    if (this.masterGain && this.ctx) {
-      this.masterGain.gain.setTargetAtTime(this.isMuted ? 0 : this.volume, this.ctx.currentTime, 0.05);
+    if (this.audio) {
+      this.audio.muted = this.isMuted;
     }
+    this.notify();
     return this.isMuted;
   }
 
-  public getStatus() {
+  public getStatus(): AudioState {
     return {
       isPlaying: this.isPlaying,
       isMuted: this.isMuted,
@@ -86,122 +133,24 @@ class CelestialSoundscape {
     };
   }
 
-  private startDrone() {
-    if (!this.ctx || !this.masterGain) return;
-
-    this.droneGain = this.ctx.createGain();
-    this.droneGain.gain.setValueAtTime(0, this.ctx.currentTime);
-    this.droneGain.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 3);
-
-    // Warm lowpass filter for deep space warmth
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(320, this.ctx.currentTime);
-
-    this.droneGain.connect(filter);
-    filter.connect(this.masterGain);
-
-    // Fundamental warm drone (92.5 Hz - F#2) and fifth (138.59 Hz - C#3)
-    this.droneOsc1 = this.ctx.createOscillator();
-    this.droneOsc1.type = 'sine';
-    this.droneOsc1.frequency.setValueAtTime(92.5, this.ctx.currentTime);
-
-    this.droneOsc2 = this.ctx.createOscillator();
-    this.droneOsc2.type = 'triangle';
-    this.droneOsc2.frequency.setValueAtTime(138.59, this.ctx.currentTime);
-
-    this.droneOsc1.connect(this.droneGain);
-    this.droneOsc2.connect(this.droneGain);
-
-    this.droneOsc1.start();
-    this.droneOsc2.start();
-  }
-
-  private stopDrone() {
-    if (!this.ctx || !this.droneGain) return;
-    try {
-      this.droneGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.5);
-      setTimeout(() => {
-        try {
-          this.droneOsc1?.stop();
-          this.droneOsc2?.stop();
-          this.droneOsc1?.disconnect();
-          this.droneOsc2?.disconnect();
-        } catch {
-          // ignore
-        }
-        this.droneOsc1 = null;
-        this.droneOsc2 = null;
-        this.droneGain = null;
-      }, 600);
-    } catch {
-      // ignore
-    }
-  }
-
-  private scheduleNextChime() {
-    if (!this.isPlaying) return;
-
-    // Trigger 1-3 gentle notes in harmony
-    this.playChord();
-
-    // Random interval between 2.8s and 5.5s
-    const nextInterval = 2800 + Math.random() * 2700;
-    this.timer = window.setTimeout(() => {
-      this.scheduleNextChime();
-    }, nextInterval);
-  }
-
-  private playChord() {
-    if (!this.ctx || !this.masterGain || !this.isPlaying) return;
-
-    const baseIdx = Math.floor(Math.random() * (this.pentatonicNotes.length - 2));
-    const chordNotes = [
-      this.pentatonicNotes[baseIdx],
-      this.pentatonicNotes[baseIdx + 2]
-    ];
-    if (Math.random() > 0.4 && baseIdx + 4 < this.pentatonicNotes.length) {
-      chordNotes.push(this.pentatonicNotes[baseIdx + 4]);
-    }
-
-    chordNotes.forEach((freq, i) => {
-      const delay = i * 0.18; // Strum effect
-      this.playNote(freq, delay);
-    });
-  }
-
-  private playNote(freq: number, delaySec: number) {
-    if (!this.ctx || !this.masterGain) return;
-
-    const startTime = this.ctx.currentTime + delaySec;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-
-    // Gentle celesta/vibraphone blend
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, startTime);
-
-    // Envelope: Quick soft attack, long reverberant exponential decay
-    const peakVolume = 0.07 + Math.random() * 0.04;
-    gain.gain.setValueAtTime(0.0001, startTime);
-    gain.gain.linearRampToValueAtTime(peakVolume, startTime + 0.12);
-    gain.gain.exponentialRampToValueAtTime(0.00001, startTime + 3.2);
-
-    osc.connect(gain);
-    gain.connect(this.masterGain);
-
-    osc.start(startTime);
-    osc.stop(startTime + 3.4);
-
-    osc.onended = () => {
-      try {
-        osc.disconnect();
-        gain.disconnect();
-      } catch {
-        // ignore
-      }
+  public subscribe(listener: (state: AudioState) => void): () => void {
+    this.listeners.add(listener);
+    listener(this.getStatus());
+    return () => {
+      this.listeners.delete(listener);
     };
+  }
+
+  private notify(): void {
+    const status = this.getStatus();
+    this.listeners.forEach((listener) => {
+      try {
+        listener(status);
+      } catch {
+        // ignore listener error
+      }
+    });
   }
 }
 
-export const celestialSoundscape = new CelestialSoundscape();
+export const celestialSoundscape = new CelestialAudioEngine();

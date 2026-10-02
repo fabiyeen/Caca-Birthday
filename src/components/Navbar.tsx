@@ -14,6 +14,7 @@ import {
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -24,9 +25,20 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = celestialSoundscape.subscribe((state) => {
+      setIsMuted(state.isMuted);
+      setIsPlaying(state.isPlaying);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const handleAudioToggle = () => {
-    const muted = celestialSoundscape.toggleMute();
-    setIsMuted(muted);
+    if (!isPlaying) {
+      celestialSoundscape.play().catch(() => {});
+    } else {
+      celestialSoundscape.toggleMute();
+    }
   };
 
   return (
@@ -81,14 +93,35 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Animated Mini Waveform in Navbar when playing */}
+          {isPlaying && !isMuted && (
+            <div className="hidden sm:flex items-end gap-0.5 h-3 px-1 py-0.5" title="Playing Yiruma - Reminiscent">
+              <span className="w-0.5 bg-amber-400 rounded-full animate-pulse h-2.5" />
+              <span className="w-0.5 bg-amber-300 rounded-full animate-pulse delay-75 h-1.5" />
+              <span className="w-0.5 bg-amber-200 rounded-full animate-pulse delay-150 h-3" />
+            </div>
+          )}
+
           <button
             onClick={handleAudioToggle}
             className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-amber-300 transition border border-white/10 cursor-pointer"
-            title={isMuted ? "Unmute Celestial Audio" : "Mute Celestial Audio"}
-            aria-label="Toggle celestial audio mute"
+            title={
+              !isPlaying 
+                ? "Play Reminiscent (Yiruma)" 
+                : isMuted 
+                  ? "Unmute Audio" 
+                  : "Mute Audio"
+            }
+            aria-label="Toggle background music"
           >
-            {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-amber-400" />}
+            {isMuted ? (
+              <VolumeX className="w-4 h-4 text-red-400" />
+            ) : isPlaying ? (
+              <Volume2 className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Volume2 className="w-4 h-4 text-slate-400" />
+            )}
           </button>
 
           <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs font-medium">

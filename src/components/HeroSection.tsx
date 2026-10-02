@@ -22,19 +22,20 @@ export const HeroSection: React.FC = () => {
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
   useEffect(() => {
-    return () => {
-      celestialSoundscape.pause();
-    };
+    const unsubscribe = celestialSoundscape.subscribe((state) => {
+      setIsPlayingAudio(state.isPlaying);
+      setIsMuted(state.isMuted);
+      setVolume(state.volume);
+    });
+    return () => unsubscribe();
   }, []);
 
-  const handleToggleAudio = () => {
-    const active = celestialSoundscape.toggle();
-    setIsPlayingAudio(active);
+  const handleToggleAudio = async () => {
+    await celestialSoundscape.toggle();
   };
 
   const handleToggleMute = () => {
-    const muted = celestialSoundscape.toggleMute();
-    setIsMuted(muted);
+    celestialSoundscape.toggleMute();
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +45,11 @@ export const HeroSection: React.FC = () => {
   };
 
   const triggerBirthdayWish = () => {
+    // Respect browser autoplay: smoothly trigger background track on user wish interaction
+    if (!isPlayingAudio) {
+      celestialSoundscape.play().catch(() => {});
+    }
+
     // Multi-stage golden & celestial confetti
     confetti({
       particleCount: 80,
@@ -91,16 +97,16 @@ export const HeroSection: React.FC = () => {
           ) : (
             <Play className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
           )}
-          <span>{isPlayingAudio ? "Pause Atmosphere" : "Play Celestial Soundscape"}</span>
+          <span>{isPlayingAudio ? "Pause Atmosphere" : "Play Background Music"}</span>
         </button>
 
         {/* Animated Soundwave Equalizer */}
-        {isPlayingAudio && (
-          <div className="flex items-center gap-0.5 h-3.5 px-1">
-            <span className="w-0.5 h-3 bg-amber-400 rounded-full animate-pulse" />
-            <span className="w-0.5 h-2 bg-amber-300 rounded-full animate-pulse delay-75" />
-            <span className="w-0.5 h-3.5 bg-amber-200 rounded-full animate-pulse delay-150" />
-            <span className="w-0.5 h-1.5 bg-amber-400 rounded-full animate-pulse delay-100" />
+        {isPlayingAudio && !isMuted && (
+          <div className="flex items-end gap-0.5 h-3.5 px-1 py-0.5" title="Playing Yiruma - Reminiscent">
+            <span className="w-0.5 bg-amber-400 rounded-full animate-pulse h-3" />
+            <span className="w-0.5 bg-amber-300 rounded-full animate-pulse delay-75 h-2" />
+            <span className="w-0.5 bg-amber-200 rounded-full animate-pulse delay-150 h-3.5" />
+            <span className="w-0.5 bg-amber-400 rounded-full animate-pulse delay-100 h-1.5" />
           </div>
         )}
 
