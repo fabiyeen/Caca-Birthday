@@ -54,7 +54,7 @@ THE CONSTELLATION OF MEMORIES - PHOTO ARCHIVE
       // Root Readme
       const readme = `*****************************************************
 DEAREST KAK CACA,
-HAPPY BIRTHDAY FROM YOUR AGRABAH & WONKA ENSEMBLE!
+HAPPY BIRTHDAY FROM ALL THE ONES YOU HELPED AND THE ONES WHO LOVE YOU
 *****************************************************
 
 This archive contains all the heartfelt letters, memories, and stories
