@@ -458,6 +458,14 @@ export const MEMORY_PHOTOS: MemoryPhoto[] = [
   {
     id: "whatsapp-image-2026-10-02-9-17-50-pm",
     imageUrl: "/photos/WhatsApp%20Image%202026-10-02%20at%209.17.50%20PM.jpeg"
+  },
+  {
+    id: "whatdsadsadsasapp-image-2026-10-02-9-26-04-pm",
+    imageUrl: "/photos/WhatdsadsadsasApp%20Image%202026-10-02%20at%209.26.04%20PM.jpeg"
+  },
+  {
+    id: "whatssdadsadasapp-image-2026-10-02-9-26-04-pm",
+    imageUrl: "/photos/WhatssdadsadasApp%20Image%202026-10-02%20at%209.26.04%20PM.jpeg"
   }
 ];
 
