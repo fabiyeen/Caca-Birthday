@@ -442,6 +442,22 @@ export const MEMORY_PHOTOS: MemoryPhoto[] = [
   {
     id: "img-20250622-wa0044",
     imageUrl: "/photos/IMG-20250622-WA0044.jpg"
+  },
+  {
+    id: "whatsapp-image-2026-09-30-3-37-28-pm",
+    imageUrl: "/photos/WhatsApp%20Image%202026-09-30%20at%203.37.28%20PM.jpeg"
+  },
+  {
+    id: "whatsapp-image-2026-09-30-3-37-28-pmdsadas",
+    imageUrl: "/photos/WhatsApp%20Image%202026-09-30%20at%203.37.28%20PMdsadas.jpeg"
+  },
+  {
+    id: "whatsapp-image-2026-09-30-3-37-28-pdsdsdsm",
+    imageUrl: "/photos/WhatsApp%20Image%202026-09-30%20at%203.37.28%20PdsdsdsM.jpeg"
+  },
+  {
+    id: "whatsapp-image-2026-10-02-9-17-50-pm",
+    imageUrl: "/photos/WhatsApp%20Image%202026-10-02%20at%209.17.50%20PM.jpeg"
   }
 ];
 
