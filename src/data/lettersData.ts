@@ -363,6 +363,18 @@ export const FRIEND_LETTERS: FriendLetter[] = [
     "letterMarkdown": "### Dearest Kak Caca,\n\nHelauuuurr Kak Cacaaa! Nungkie disinii!\n\nHappy bday Kak Cacamaricaaw endulita senatero rayaa! 🐣💌\n\nSemoga panjang umur, sehat selalu dan semoga kamu selalu diketemukan dengan orang-orang baik dan kesempatan-kesempatan baik yang bisa membuatmu berproses menjadi versi diri Kak Caca yg paling manthap asoy endul petjah duar 🤯💗\n\nI'm rooting for u always, and thankyou for existing yah great soul 💐\n\nWish u all the best yap Kakk! 💌💌",
     "pdfUrl": "/letters/Nungkie.pdf",
     "colorAccent": "#F59E0B"
+  },
+  {
+    "id": "jenni",
+    "name": "Jenni",
+    "constellationCoords": {
+      "x": 64,
+      "y": 50
+    },
+    "snippetQuote": "Happy birthday, kacaca a.k.a manusia setengah bunga matahari!! You’ve inspired me a lot, especially to be someone who shares happiness with others. Bahagia terus yaa!",
+    "letterMarkdown": "### Dearest Kak Caca,\n\nHappy birthday, Kacaca a.k.a manusia setengah bunga matahari!! 🌻✨\n\nSemoga di umur yang baru ini semuanya makin dilancarkan yaa, hal-hal yang Kacaca pengenin bisa satu-persatu kejadian, dan semoga tahun ini banyak hal baik yang dateng ke Kacaca!\n\nMakasih ya udah jadi salah satu support system aku selama ini Kak… walaupun banyak diisi dengan aku yang ngerepotin dan aku tanya-tanyain perihal per-Katak-an serta per-DKV-an ini, intinya aku super duper beruntung banget bisa kenal Kacaca hehe.\n\nActually, you’ve inspired me a lot, Kak, especially to be someone who shares happiness with others xixixi! Semoga kita masih bisa ketemu yaa Kak, jujur aku kangen bingit loh… I’d love to hear berbagai macam life update Kacaca yang terlihat asik di story (jujur keren!).\n\nHave a good one, Kak!! Bahagia terus yaa 🤍\n\n— Jennifer",
+    "pdfUrl": "/letters/Jenni.pdf",
+    "colorAccent": "#EAB308"
   }
 ];
 
@@ -633,5 +645,13 @@ export const CONSTELLATION_LINKS: [string, string][] = [
   [
     "nungkie",
     "mui"
+  ],
+  [
+    "jenni",
+    "husen"
+  ],
+  [
+    "jenni",
+    "ci-jane"
   ]
 ];
