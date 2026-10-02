@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Animated Mini Waveform in Navbar when playing */}
           {isPlaying && !isMuted && (
-            <div className="hidden sm:flex items-end gap-0.5 h-3 px-1 py-0.5" title="Playing Yiruma - Reminiscent">
+            <div className="hidden sm:flex items-end gap-0.5 h-3 px-1 py-0.5" title="Playing Too Little Too Late">
               <span className="w-0.5 bg-amber-400 rounded-full animate-pulse h-2.5" />
               <span className="w-0.5 bg-amber-300 rounded-full animate-pulse delay-75 h-1.5" />
               <span className="w-0.5 bg-amber-200 rounded-full animate-pulse delay-150 h-3" />
@@ -108,7 +108,7 @@ export const Navbar: React.FC = () => {
             className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-amber-300 transition border border-white/10 cursor-pointer"
             title={
               !isPlaying 
-                ? "Play Reminiscent (Yiruma)" 
+                ? "Play Background Music" 
                 : isMuted 
                   ? "Unmute Audio" 
                   : "Mute Audio"

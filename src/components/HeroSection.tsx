@@ -102,7 +102,7 @@ export const HeroSection: React.FC = () => {
 
         {/* Animated Soundwave Equalizer */}
         {isPlayingAudio && !isMuted && (
-          <div className="flex items-end gap-0.5 h-3.5 px-1 py-0.5" title="Playing Yiruma - Reminiscent">
+          <div className="flex items-end gap-0.5 h-3.5 px-1 py-0.5" title="Playing Too Little Too Late">
             <span className="w-0.5 bg-amber-400 rounded-full animate-pulse h-3" />
             <span className="w-0.5 bg-amber-300 rounded-full animate-pulse delay-75 h-2" />
             <span className="w-0.5 bg-amber-200 rounded-full animate-pulse delay-150 h-3.5" />

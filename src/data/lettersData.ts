@@ -339,6 +339,30 @@ export const FRIEND_LETTERS: FriendLetter[] = [
     "letterMarkdown": "### Dearest Kak Caca,\n\nCHACHAABRINAA HAPPY BIRTHDAAYYYY!!!!\n\nPanjang umur sehat selalu, smoga gacor terus hidupnya. Main atuh sekali sekali kapan ke gs lagiiii? We should karaoke together lagii! Tinggal di gs ajasi?!\n\nAnyways hope you’re always happyy, eat good food, travel to more countries, dan semoga kita tibatiba dikasi undangan wedding 👀👀 hehe soalnya aku gatau km dah ada cowo ga, life update gas!\n\nSemangat terus chaaaa! Lovlov! Salam sama tante Yaniie!",
     "pdfUrl": "/letters/Sammy.pdf",
     "colorAccent": "#F59E0B"
+  },
+  {
+    "id": "regina",
+    "name": "Regina",
+    "constellationCoords": {
+      "x": 36,
+      "y": 52
+    },
+    "snippetQuote": "Ka Caca adalah teman yang sangat pengertian, penuh keceriaan, penuh dengan positive vibes, dan semua hal baik di dunia itu melekat banget sama ka Caca di mataku.",
+    "letterMarkdown": "### Dearest Kak Caca,\n\nHalo Ka Caca!!! Selamat Ulang Tahunnn!!!!\n\nMungkin aku cerita dulu ya first impression aku akan seorang Ka Caca itu kayak gimana hehe. Waktu pertama kali aku ngelihat Ka Caca, aku kira Ka Caca orangnya agak cuek dan mungkin sebenernya baik tapi kalo udah deket gitu. Oleh karena itu, aku jadi pengen deh coba temenan sama Ka Caca lebih dekat.\n\nLalu ternyata pas Wonka kita malah dipertemukan sebagai pemain dan stage manager. Dari situ aku baru mulai melihat sisi Ka Caca yang sebelumnya belum pernah kelihatan buat aku. Ka Caca adalah teman yang sangat pengertian, penuh keceriaan, penuh dengan positive vibes, dan semua hal baik di dunia itu melekat banget sama Ka Caca di mataku.\n\nAku sangat bersyukur bisa menjadi salah satu orang yang bisa dengar cerita Ka Caca, candaan Ka Caca, dan mungkin sisi Ka Caca yang belum pernah ku lihat pada saat Agrabah dulu.\n\nSo aku mau mengucapkan the happiest birthday for you Ka Caca! Semoga semua hal baik selalu menemani Kaka. Dan semoga semua hal yang tidak membahagiakan untuk Ka Caca dijauhi oleh Allah.\n\nBest wishes for you Ka Caca, I hope to see you soon!! 🤍",
+    "pdfUrl": "/letters/Regina.pdf",
+    "colorAccent": "#A855F7"
+  },
+  {
+    "id": "nungkie",
+    "name": "Nungkie",
+    "constellationCoords": {
+      "x": 26,
+      "y": 80
+    },
+    "snippetQuote": "Semoga kamu selalu diketemukan dengan orang orang baik dan kesempatan baik yang membuatmu berproses... I'm rooting for u always, and thankyou for existing yah great soul!",
+    "letterMarkdown": "### Dearest Kak Caca,\n\nHelauuuurr Kak Cacaaa! Nungkie disinii!\n\nHappy bday Kak Cacamaricaaw endulita senatero rayaa! 🐣💌\n\nSemoga panjang umur, sehat selalu dan semoga kamu selalu diketemukan dengan orang-orang baik dan kesempatan-kesempatan baik yang bisa membuatmu berproses menjadi versi diri Kak Caca yg paling manthap asoy endul petjah duar 🤯💗\n\nI'm rooting for u always, and thankyou for existing yah great soul 💐\n\nWish u all the best yap Kakk! 💌💌",
+    "pdfUrl": "/letters/Nungkie.pdf",
+    "colorAccent": "#F59E0B"
   }
 ];
 
@@ -569,5 +593,21 @@ export const CONSTELLATION_LINKS: [string, string][] = [
   [
     "sammy",
     "husen"
+  ],
+  [
+    "regina",
+    "palen"
+  ],
+  [
+    "regina",
+    "ka-echa"
+  ],
+  [
+    "nungkie",
+    "nima"
+  ],
+  [
+    "nungkie",
+    "mui"
   ]
 ];

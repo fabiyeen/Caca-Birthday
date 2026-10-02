@@ -1,4 +1,4 @@
-// Background Music Engine - Yiruma: Reminiscent
+// Background Music Engine - Too Little Too Late
 // High-fidelity streaming audio with loop, volume control, instant mute, and subscription state
 
 export interface AudioState {
@@ -9,7 +9,7 @@ export interface AudioState {
 
 class CelestialAudioEngine {
   private audio: HTMLAudioElement | null = null;
-  private audioSrc = encodeURI('/Yiruma Reminiscent.mp3');
+  private audioSrc = encodeURI('/too little too late.mp3');
   private isPlaying = false;
   private isMuted = false;
   private volume = 0.45;
