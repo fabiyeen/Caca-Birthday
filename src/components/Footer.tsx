@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <p className="text-xs text-slate-400 max-w-md font-sans-ui leading-relaxed">
-          Crafted with love by the Agrabah & Wonka ensemble. A digital constellation keepsake to honor Kak Caca's birthday across time and space.
+          Made by your one and only Adek Bian hehe.
         </p>
 
         <div className="flex items-center gap-1.5 text-[11px] text-slate-400/80 mt-2">
